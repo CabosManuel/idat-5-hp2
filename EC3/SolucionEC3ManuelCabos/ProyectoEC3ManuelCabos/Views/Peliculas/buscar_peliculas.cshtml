@@ -1,0 +1,58 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<ProyectoEC3ManuelCabos.Models.sp_buscar_peliculas_Result>
+
+@{
+    ViewBag.Title = "Buscar Películas";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 5, canPage: true, canSort: true);
+}
+
+<h2>Buscar Películas</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        Género: @Html.DropDownList("cod_gen", (SelectList)ViewBag.vbGeneros, "Seleccione", new { @class = "form-control"})
+        <input type="submit" value="Consultar Género" class="btn btn-info" />
+    </div>
+}
+@using (Html.BeginForm())
+{
+    <div>
+        Año: <input type="text" name="cod_gen" class="form-control"/>
+        <input type="submit" value="Consultar Año" class="btn btn-info" />
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>Imagen</th>
+        <th>Nombre de la película</th>
+        <th>Género</th>
+        <th>Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.cod_pel</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_pel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.genero)
+            </td>
+            <td>
+                @Html.ActionLink("Detalles", "", new { cod_pel = item.cod_pel })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="pagedList">
+    @Html.PagedListPager(Model, nPag => Url.Action("buscar_peliculas",
+          new { cod_gen = ViewBag.vbCodGen, año = ViewBag.vbAño, nPag }),
+    PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>
