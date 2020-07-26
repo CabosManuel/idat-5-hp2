@@ -1,0 +1,27 @@
+cod_pel char(5)
+-----------------------
+nom_pel varchar(80)
+duracion int
+cod_gen char(3)
+cant_cop int default(1)
+año int
+
+1'Mi vecino Totoro', 88,'G08',14,1988
+
+2'Your Name',112,'G08',5,2016
+
+3'The End of Evangelion',90,'G08',10,1997
+
+4'Robots',91,'G07',4,2005
+
+5'El Planeta del Tesoro',95,'G07',12,2002
+
+6'Ready Player One: comienza el juego',139,'G06',3,2018
+
+7'Titanes del Pacífico',132,'G06',15,2013
+
+8'El Transportador',92,'G04',7,2002
+
+9'El juego de Ender',114,'G06',9,2013
+
+10'La Máscara',101,'G01',6,1994
