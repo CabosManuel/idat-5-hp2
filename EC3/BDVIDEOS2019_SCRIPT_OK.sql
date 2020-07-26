@@ -48,7 +48,46 @@ Create Table Actores
 	eliminado char(2) default('No')
 )
 go
+--P0001
+insert into Actores values('A0001','Noriko Hidaka',7,'No')
+insert into Actores values('A0002','Chika Sakamoto',7,'No')
+insert into Actores values('A0003','Shigesato Itoi',7,'No')
+insert into Actores values('A0004','Sumi Shimamoto',7,'No')
+--P0002
+insert into Actores values('A0005','Ryunosuke Kamiki',7,'No')
+insert into Actores values('A0006','Mone Kamishiraishi',7,'No')
+--P0003
+insert into Actores values('A0007','Megumi Ogata',7,'No')
+insert into Actores values('A0008','Megumi Hayashibara',7,'No')
+insert into Actores values('A0009','Yuko Miyamura',7,'No')
+--P0004
+insert into Actores values('A0010','Robin Williams',1,'No')
+insert into Actores values('A0011','Ewan McGregor',2,'No')
+insert into Actores values('A0012','Mel Brooks',1,'No')
+--P0005
+insert into Actores values('A0013','Joseph Gordon-Levitt',1,'No')
+--P0006
+insert into Actores values('A0014','Olivia Cooke',2,'No')
+insert into Actores values('A0015','Tye Sheridan',1,'No')
+insert into Actores values('A0016','Simon Pegg',2,'No')
+--P0007
+insert into Actores values('A0017','Rinko Kikuchi',7,'No')
+insert into Actores values('A0018','Idris Elba',2,'No')
+insert into Actores values('A0019','Charlie Hunnam',2,'No')
+insert into Actores values('A0020','Charlie Day',1,'No')
+insert into Actores values('A0021','Burn Gorman',1,'No')
+--P0008
+insert into Actores values('A0022','Jason Statham',2,'No')
+--P0009
+insert into Actores values('A0023','Asa Butterfield',2,'No')
+insert into Actores values('A0024','Harrison Ford',1,'No')
+insert into Actores values('A0025','Moisés Arias',1,'No')
+--P0010
+insert into Actores values('A0026','Jim Carrey',13,'No')
+insert into Actores values('A0027','Cameron Diaz',1,'No')
+insert into Actores values('A0028','Peter Greene',1,'No')
 
+/*
 insert into Actores values('A0001','Sharon Stone',1,'No')
 insert into Actores values('A0002','Michael Douglas',1, 'No')
 insert into Actores values('A0003','Julia Roberts',1, 'No')
@@ -102,8 +141,7 @@ insert into Actores values('A0048','Nia Vardalos',13,'No')
 insert into Actores values('A0049','John Corbett',1,'No')
 insert into Actores values('A0050','Natalie Dormer',2,'No')
 insert into Actores values('A0051','Taylor Kinney',1,'No')
-go
-
+go*/
 
 create table Genero
 (
@@ -149,6 +187,17 @@ insert into Formatos values(103,'DVD Doble', 25.90)
 insert into Formatos values(104,'Blu Ray Doble', 68.90)
 go
 
+insert into Peliculas values('P0001','Mi vecino Totoro', 88,'G08',14,1988)
+insert into Peliculas values('P0002','Your Name',112,'G08',5,2016)
+insert into Peliculas values('P0003','The End of Evangelion',90,'G08',10,1997)
+insert into Peliculas values('P0004','Robots',91,'G07',4,2005)
+insert into Peliculas values('P0005','El Planeta del Tesoro',95,'G07',12,2002)
+insert into Peliculas values('P0006','Ready Player One: comienza el juego',139,'G06',3,2018)
+insert into Peliculas values('P0007','Titanes del Pacífico',132,'G06',15,2013)
+insert into Peliculas values('P0008','El Transportador',92,'G04',7,2002)
+insert into Peliculas values('P0009','El juego de Ender',114,'G06',9,2013)
+insert into Peliculas values('P0010','La Máscara',101,'G01',6,1994)
+go
 
 /*insert into Peliculas values('P0001','Mujer Bonita',120,'G05',5,1985)
 insert into Peliculas values('P0002','Bailamos',130,'G05',10,2003)
@@ -200,12 +249,8 @@ insert into Peliculas values('P0047','Batman vs Superman: Dawn of Justice',150,'
 insert into Peliculas values('P0048','Divergente La Serie:Leal',120,'G06',10,2016)
 insert into Peliculas values('P0049','Londres Bajo Fuego',100,'G04',12,2016)
 insert into Peliculas values('P0050','Mi Gran Boda Griega 2',100,'G01',10,2016)
-insert into Peliculas values('P0051','El Bosque Siniestro',100,'G02',8,2016)*/
-go
-
-
-
-
+insert into Peliculas values('P0051','El Bosque Siniestro',100,'G02',8,2016)
+go*/
 
 create table Clientes
 (
@@ -259,7 +304,7 @@ create table Venta_Cabecera
 go
 
 -----------------------------------------------------------------
-insert into Venta_Cabecera  values('C0001','12/08/2018',0, 'No')
+/*insert into Venta_Cabecera  values('C0001','12/08/2018',0, 'No')
 insert into Venta_Cabecera  values('C0002','14/08/2018',0, 'No')
 insert into Venta_Cabecera  values('C0004','15/08/2018',0, 'No')
 insert into Venta_Cabecera  values('C0006','18/08/2018',0, 'No')
@@ -354,7 +399,7 @@ insert into Venta_Cabecera  values('C0024','27/03/2019',0, 'No')
 insert into Venta_Cabecera  values('C0005','28/03/2019',0, 'No')
 insert into Venta_Cabecera  values('C0019','29/03/2019',0, 'No')
 insert into Venta_Cabecera  values('C0017','30/03/2019',0, 'No')
-go
+go*/
 
 
 create table Venta_Detalle
@@ -370,7 +415,7 @@ create table Venta_Detalle
 go
 
 -- TRUNCATE TABLE Venta_Detalle
-insert into Venta_Detalle values(1,'P0001',1,101,0,'No') 
+/*insert into Venta_Detalle values(1,'P0001',1,101,0,'No') 
 insert into Venta_Detalle values(1,'P0002',2,101,0,'No') 
 insert into Venta_Detalle values(2,'P0004',1,102,0,'No') 
 insert into Venta_Detalle values(2,'P0001',3,102,0,'No') 
@@ -567,7 +612,7 @@ insert into Venta_Detalle values(91,'P0013',1,101,0,'No')
 insert into Venta_Detalle values(92,'P0012',2,101,0,'No')
 insert into Venta_Detalle values(92,'P0022',1,102,0,'No')
 go
-
+*/
 ---------------------------------------------------------
 create table Peli_Actor
 (
@@ -579,7 +624,45 @@ go
 
 
 -- Ingreso de Registros
+insert into Peli_Actor values('P0001','A0001')
+insert into Peli_Actor values('P0001','A0002')
 insert into Peli_Actor values('P0001','A0003')
+insert into Peli_Actor values('P0001','A0004')
+
+insert into Peli_Actor values('P0002','A0005')
+insert into Peli_Actor values('P0002','A0006')
+
+insert into Peli_Actor values('P0003','A0007')
+insert into Peli_Actor values('P0003','A0008')
+insert into Peli_Actor values('P0003','A0009')
+
+insert into Peli_Actor values('P0004','A0010')
+insert into Peli_Actor values('P0004','A0011')
+insert into Peli_Actor values('P0004','A0012')
+
+insert into Peli_Actor values('P0005','A0013')
+
+insert into Peli_Actor values('P0006','A0014')
+insert into Peli_Actor values('P0006','A0015')
+insert into Peli_Actor values('P0006','A0016')
+
+insert into Peli_Actor values('P0007','A0017')
+insert into Peli_Actor values('P0007','A0018')
+insert into Peli_Actor values('P0007','A0019')
+insert into Peli_Actor values('P0007','A0020')
+insert into Peli_Actor values('P0007','A0021')
+
+insert into Peli_Actor values('P0008','A0022')
+
+insert into Peli_Actor values('P0009','A0023')
+insert into Peli_Actor values('P0009','A0024')
+insert into Peli_Actor values('P0009','A0025')
+
+insert into Peli_Actor values('P0010','A0026')
+insert into Peli_Actor values('P0010','A0027')
+insert into Peli_Actor values('P0010','A0028')
+
+/*insert into Peli_Actor values('P0001','A0003')
 insert into Peli_Actor values('P0001','A0016')
 insert into Peli_Actor values('P0002','A0019')
 insert into Peli_Actor values('P0002','A0016')
@@ -673,12 +756,13 @@ insert into Peli_Actor values('P0049','A0047')
 insert into Peli_Actor values('P0050','A0048')
 insert into Peli_Actor values('P0050','A0049')
 insert into Peli_Actor values('P0051','A0050')
-insert into Peli_Actor values('P0051','A0051')
+insert into Peli_Actor values('P0051','A0051')*/
 -----------------------------------------------------
 
 
 
 -------------Calculos Precio y Total_Vta ------------------------
+
 update Venta_Detalle
 	set precio=f.precio
 	from Venta_Detalle vd inner join Formatos f

@@ -11,13 +11,14 @@ as
 		año
 	from Peliculas as p inner join Genero g
 		on p.cod_gen = g.cod_gen
-	where 
-		(@cod_gen = p.cod_gen or
-		@año = p.año) and
+	where
+		@cod_gen = p.cod_gen or
+		@año = p.año and
 		p.cant_cop>0
 go
+
 --select*from Peliculas
---exec sp_buscar_peliculas 'G05',2016
+--exec sp_buscar_peliculas 'G04',0
 
 
 alter procedure sp_insertar_vta_cab
