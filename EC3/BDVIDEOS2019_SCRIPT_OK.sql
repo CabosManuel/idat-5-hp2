@@ -118,6 +118,9 @@ insert into Genero values('G03','Drama')
 insert into Genero values('G04','Accion')
 insert into Genero values('G05','Romantica')
 insert into Genero values('G06','Ciencia Ficcion')
+
+insert into Genero values('G07','Animacion')
+insert into Genero values('G08','Anime')
 go
 
 
@@ -147,7 +150,7 @@ insert into Formatos values(104,'Blu Ray Doble', 68.90)
 go
 
 
-insert into Peliculas values('P0001','Mujer Bonita',120,'G05',5,1985)
+/*insert into Peliculas values('P0001','Mujer Bonita',120,'G05',5,1985)
 insert into Peliculas values('P0002','Bailamos',130,'G05',10,2003)
 insert into Peliculas values('P0003','Conquistando a mi suegro',110,'G01',10,2005)
 insert into Peliculas values('P0004','Los Rompebodas',110,'G01',15,2005)
@@ -197,7 +200,7 @@ insert into Peliculas values('P0047','Batman vs Superman: Dawn of Justice',150,'
 insert into Peliculas values('P0048','Divergente La Serie:Leal',120,'G06',10,2016)
 insert into Peliculas values('P0049','Londres Bajo Fuego',100,'G04',12,2016)
 insert into Peliculas values('P0050','Mi Gran Boda Griega 2',100,'G01',10,2016)
-insert into Peliculas values('P0051','El Bosque Siniestro',100,'G02',8,2016)
+insert into Peliculas values('P0051','El Bosque Siniestro',100,'G02',8,2016)*/
 go
 
 
