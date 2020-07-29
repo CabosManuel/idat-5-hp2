@@ -53,3 +53,44 @@ Moisés Arias us
 Jim Carrey cnd
 Cameron Diaz us
 Peter Greene us
+
+
+
+--P0001
+insert into Actores values('A0001','Noriko Hidaka',7,'No')
+insert into Actores values('A0002','Chika Sakamoto',7,'No')
+insert into Actores values('A0003','Shigesato Itoi',7,'No')
+insert into Actores values('A0004','Sumi Shimamoto',7,'No')
+--P0002
+insert into Actores values('A0005','Ryunosuke Kamiki',7,'No')
+insert into Actores values('A0006','Mone Kamishiraishi',7,'No')
+--P0003
+insert into Actores values('A0007','Megumi Ogata',7,'No')
+insert into Actores values('A0008','Megumi Hayashibara',7,'No')
+insert into Actores values('A0009','Yuko Miyamura',7,'No')
+--P0004
+insert into Actores values('A0010','Robin Williams',1,'No')
+insert into Actores values('A0011','Ewan McGregor',2,'No')
+insert into Actores values('A0012','Mel Brooks',1,'No')
+--P0005
+insert into Actores values('A0013','Joseph Gordon-Levitt',1,'No')
+--P0006
+insert into Actores values('A0014','Olivia Cooke',2,'No')
+insert into Actores values('A0015','Tye Sheridan',1,'No')
+insert into Actores values('A0016','Simon Pegg',2,'No')
+--P0007
+insert into Actores values('A0017','Rinko Kikuchi',7,'No')
+insert into Actores values('A0018','Idris Elba',2,'No')
+insert into Actores values('A0019','Charlie Hunnam',2,'No')
+insert into Actores values('A0020','Charlie Day',1,'No')
+insert into Actores values('A0021','Burn Gorman',1,'No')
+--P0008
+insert into Actores values('A0022','Jason Statham',2,'No')
+--P0009
+insert into Actores values('A0023','Asa Butterfield',2,'No')
+insert into Actores values('A0024','Harrison Ford',1,'No')
+insert into Actores values('A0025','Moisés Arias',1,'No')
+--P0010
+insert into Actores values('A0026','Jim Carrey',13,'No')
+insert into Actores values('A0027','Cameron Diaz',1,'No')
+insert into Actores values('A0028','Peter Greene',1,'No')

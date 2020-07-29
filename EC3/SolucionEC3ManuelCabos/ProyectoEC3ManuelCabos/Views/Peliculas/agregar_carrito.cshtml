@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "agregar_carrito";
+}
+
+<h2>agregar_carrito</h2>
+
+<div class="alert alert-success">
+    @ViewBag.vbMsj
+</div>
+<br />
+<div>
+    @Html.ActionLink("Seguir comprando","buscar_peliculas", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Ver Carrito","ver_carrito", null, new { @class = "btn btn-warning" })
+</div>

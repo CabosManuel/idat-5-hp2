@@ -27,6 +27,7 @@ namespace ProyectoEC3ManuelCabos.Models
         public string cod_gen { get; set; }
         public Nullable<int> cant_cop { get; set; }
         public Nullable<int> año { get; set; }
+        public Nullable<decimal> precio { get; set; }
     
         public virtual Genero Genero { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

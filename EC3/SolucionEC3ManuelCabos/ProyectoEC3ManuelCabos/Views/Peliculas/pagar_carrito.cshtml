@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProyectoEC3ManuelCabos.Models.Carrito>
+
+@{
+    ViewBag.Title = "pagar_carrito";
+}
+
+<h2>pagar_carrito</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Seleccione Cliente: @Html.DropDownList("cod_cli",(SelectList)ViewBag.vbClientes,
+                           "Seleccione", new{ @class="form-control"})
+        <input type="submit" value="Confirmar Pago" class="btn btn-success"/>
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>Imagen</th>
+        <th>Nombre de la película</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="@Url.Content("~/imagenes/"+ item.codigo +".jpg")" style="width:130px;height:160px;" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @item.importe
+        </td>
+    </tr>
+}
+
+</table>
+
+@if (ViewBag.msj != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.msj
+    </div>
+}

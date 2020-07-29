@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProyectoEC3ManuelCabos.Models.Carrito>
+
+@{
+    ViewBag.Title = "ver_carrito";
+    decimal total = Model.Sum(p => p.importe);
+}
+
+<h2>ver_carrito</h2>
+
+<p>
+    @Html.ActionLink("Seguir comprando","buscar_peliculas", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Pagar", "pagar_carrito", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>Imagen</th>
+        <th>Nombre de la película</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Importe</th>
+        <th>Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content("~/imagenes/"+ item.codigo +".jpg")" style="width:130px;height:160px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @item.importe
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "eliminar_pelicula_carrito", new { cod = item.codigo}, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<p class="text-right text-success">
+    Importe Total: @total.ToString("N2")
+</p>
+
+

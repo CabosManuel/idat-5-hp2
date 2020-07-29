@@ -1,0 +1,77 @@
+﻿@model ProyectoEC3ManuelCabos.Models.Peliculas
+
+@{
+    ViewBag.Title = "seleccionar_pelicula";
+}
+
+<h2>seleccionar_pelicula</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Peliculas</h4>
+        <hr />
+        <img src="@Url.Content("~/imagenes/"+ Model.cod_pel +".jpg")" style="width:150px;height:200px;" />
+        @Html.HiddenFor(model => model.cod_pel)
+
+        <br />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nom_pel)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nom_pel)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.duracion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.duracion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cant_cop)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cant_cop)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.año)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.año)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Genero.des_gen)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Genero.des_gen)
+            </dd>
+
+            <dt>
+                Formato
+            </dt>
+
+            <dd>
+                @Html.DropDownList("precio", (SelectList)ViewBag.vbFormatos, "Seleccione", new { @class = "form-control" })
+            </dd>
+        </dl>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("< Volver", "buscar_peliculas", null, new { @class = "btn btn-info" })
+                <input type="submit" value="Agregar al carrito" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}

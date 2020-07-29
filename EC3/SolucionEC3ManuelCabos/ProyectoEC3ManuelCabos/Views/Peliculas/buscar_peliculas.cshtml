@@ -12,31 +12,40 @@
 
 @using (Html.BeginForm())
 {
-    <div>
-        Género: @Html.DropDownList("cod_gen", (SelectList)ViewBag.vbGeneros, "Seleccione", new { @class = "form-control"})
-        <input type="submit" value="Consultar Género" class="btn btn-info" />
+    <div class="row">
+        Género: @Html.DropDownList("cod_gen", (SelectList)ViewBag.vbGeneros, "Seleccione")
+        <input type="submit" name="btnGen" value="Consultar Género" class="btn btn-info" />
     </div>
 }
+
+<br />
+
 @using (Html.BeginForm())
 {
-    <div>
-        Año: <input type="text" name="cod_gen" class="form-control"/>
-        <input type="submit" value="Consultar Año" class="btn btn-info" />
+    <div class="row">
+        Año: <input type="text" name="año" value="@ViewBag.vbAño"/>
+        <input type="submit" name="btnAño" value="Consultar Año" class="btn btn-info" />
     </div>
 }
+<p style="text-align:right">
+    @Html.ActionLink("Ver Carrito", "ver_carrito",null, new { @class = "btn btn-warning" })
+</p>
 
 <table class="table">
     <tr>
         <th>Imagen</th>
         <th>Nombre de la película</th>
         <th>Género</th>
+        <th>Año</th>
         <th>Acciones</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.cod_pel</td>
+            <td>
+                <img src="@Url.Content("~/imagenes/"+ item.cod_pel +".jpg")" style="width:130px;height:160px;" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.nom_pel)
             </td>
@@ -44,10 +53,13 @@
                 @Html.DisplayFor(modelItem => item.genero)
             </td>
             <td>
-                @Html.ActionLink("Detalles", "", new { cod_pel = item.cod_pel })
+                @Html.DisplayFor(modelItem => item.año)
+            </td>
+            <td>
+                @Html.ActionLink("Seleccionar", "seleccionar_pelicula",new { cod = item.cod_pel})
             </td>
         </tr>
-    }
+        }
 
 </table>
 

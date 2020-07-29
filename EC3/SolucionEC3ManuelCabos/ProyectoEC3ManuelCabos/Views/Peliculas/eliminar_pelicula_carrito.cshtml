@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "eliminar_pelicula_carrito";
+}
+
+<h2>eliminar_pelicula_carrito</h2>
+
+<div class="alert alert-danger">
+    @ViewBag.vbMsj
+</div>
+<br />
+<div>
+    @Html.ActionLink("Seguir comprando", "buscar_peliculas", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Ver Carrito", "ver_carrito", null, new { @class = "btn btn-warning" })
+</div>

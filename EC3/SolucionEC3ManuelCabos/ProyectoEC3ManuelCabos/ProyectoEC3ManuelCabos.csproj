@@ -92,8 +92,10 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Activities" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -141,21 +143,28 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Videos.Context.tt">
+    <Content Include="Models\Peliculas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Videos.edmx</DependentUpon>
-      <LastGenOutput>Videos.Context.cs</LastGenOutput>
+      <DependentUpon>Peliculas.edmx</DependentUpon>
+      <LastGenOutput>Peliculas.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Videos.tt">
+    <Content Include="Models\Peliculas.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Videos.edmx</DependentUpon>
-      <LastGenOutput>Videos.cs</LastGenOutput>
+      <DependentUpon>Peliculas.edmx</DependentUpon>
+      <LastGenOutput>Peliculas1.cs</LastGenOutput>
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <EntityDeploy Include="Models\Peliculas.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Peliculas.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Peliculas.edmx.diagram">
+      <DependentUpon>Peliculas.edmx</DependentUpon>
+    </Content>
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -176,54 +185,47 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actores.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\Clientes.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Formatos.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Genero.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\listar_peliculas_Result.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pais.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Peliculas.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Peliculas.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Peliculas.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Peliculas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Peliculas.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Peliculas1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Peliculas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_buscar_peliculas_Result.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Venta_Cabecera.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Venta_Detalle.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Videos.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Videos.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Videos.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Videos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Videos.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Videos.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Videos1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Videos.edmx</DependentUpon>
+      <DependentUpon>Peliculas.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -233,17 +235,16 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Videos.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Videos1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Videos.edmx.diagram">
-      <DependentUpon>Videos.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Peliculas\buscar_peliculas.cshtml" />
+    <Content Include="Views\Peliculas\agregar_carrito.cshtml" />
+    <Content Include="Views\Peliculas\ver_carrito.cshtml" />
+    <Content Include="Views\Peliculas\eliminar_pelicula_carrito.cshtml" />
+    <Content Include="Views\Peliculas\pagar_carrito.cshtml" />
+    <Content Include="Views\Peliculas\finalizar_carrito.cshtml" />
+    <Content Include="Views\Peliculas\seleccionar_pelicula.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -253,6 +254,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="imagenes\" />
+    <Folder Include="Views\Ventas\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
