@@ -1,0 +1,76 @@
+USE BDVENTAS2020
+GO
+
+CREATE PROC PA_LISTAR_CLIENTES
+AS
+SELECT C.cli_cod, C.cli_nom, C.cli_cre, C.cli_tel
+FROM Clientes C
+GO
+
+--exec PA_LISTAR_CLIENTES
+--go
+
+CREATE PROC PA_LISTAR_ARTICULOS
+AS
+SELECT A.art_cod, art_nom, A.art_pre, A.art_stk
+FROM Articulos A
+	WHERE A.art_stk>0
+GO
+
+--exec PA_LISTAR_ARTICULOS
+--go
+
+CREATE PROC PA_GRABAR_WEB_FAC_CABE
+@CLI_COD CHAR(5),@FAC_TOTAL DECIMAL(10,2)
+AS
+	-- DECLARANDO VARIABLE PARA EL NUEVO NUMERO DE LA FACTURA
+	DECLARE @NUMERO VARCHAR(5) 
+	-- RECUPERANDO EL MAXIMO NUMERO DE FACTURA
+	SELECT @NUMERO=RIGHT(MAX(FAC_NUM),4)+1 FROM FAC_CABE
+	-- GENERANDO EL NUEVO NUMERO DE LA FACTURA
+	SELECT @NUMERO='F'+RIGHT('000'+@NUMERO,4)
+	-----------------------------------------------
+	declare @igv decimal(8,2)=0
+	select @igv = (@FAC_TOTAL/1.18)*0.18
+	-----------------------------------------------
+	-- INSERTANDO LOS DATOS DE LA NUEVA FACTURA
+	INSERT INTO Fac_cabe VALUES(@NUMERO,GETDATE(),
+	@CLI_COD,'F', @igv, 99,@FAC_TOTAL)
+	-- DEVOLVIENDO EL NUEVO NUMERO DE FACTURA GENERADO
+	SELECT @NUMERO AS NUMERO
+GO
+
+CREATE PROC PA_GRABAR_FAC_DETA
+@FAC_NUM CHAR(5), @ART_COD CHAR(5), 
+@ART_CAN INT, @ART_PRE DECIMAL(8,2)
+AS
+	-- INSERTANDO EL NUEVO DETALLE DE LA FACTURA
+	INSERT INTO Fac_deta 
+	   VALUES(@FAC_NUM,@ART_COD,@ART_CAN,@ART_PRE)
+	-- ACTUALIZANDO EL STOCK DEL ARTICULO
+	UPDATE Articulos SET art_stk=art_stk - @ART_CAN 
+	WHERE art_cod = @ART_COD
+GO
+
+--------------------------------
+-- ULTIMA FACTURA REGISTRADA
+--------------------------------
+SELECT TOP(1) F.*, C.cli_nom 
+   FROM Fac_cabe F INNER JOIN CLIENTES C
+   ON F.cli_cod=C.cli_cod
+   ORDER BY fac_num DESC
+GO
+
+SELECT TOP(1) WITH TIES FD.*, A.art_nom
+FROM Fac_deta FD INNER JOIN Articulos A
+	ON FD.art_cod=A.art_cod
+	ORDER BY fac_num DESC
+GO
+
+
+-- constraint de tipo check sobre la columna art_stk 
+-- de la tabla Articulos que no permita tener un stock negativo
+ALTER TABLE ARTICULOS
+	ADD CONSTRAINT CK_ART_STK CHECK(ART_STK>=0)
+GO
+
