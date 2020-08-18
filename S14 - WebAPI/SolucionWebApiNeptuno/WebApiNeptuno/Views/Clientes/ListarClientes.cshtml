@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApiNeptuno.Models.Clientes>
+
+@{
+    ViewBag.Title = "ListarClientes";
+}
+
+<h2>ListarClientes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCompañia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCompañia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdCliente }) |
+            @Html.ActionLink("Detalle", "DetalleCliente", new { co=item.IdCliente },new {@class = "btn btn-warning"}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdCliente })
+        </td>
+    </tr>
+}
+
+</table>

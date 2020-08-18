@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebApiNeptuno.Models.sp_api_listar_clientes_Result>
+
+@{
+    ViewBag.Title = "Listar API Clientes";
+}
+
+<h2>Listar API Clientes</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Cliente", "CrearCliente",null,new { @class="btn btn-success"})
+</p>
+<table class="table">
+    <tr>
+        <td>
+            Código
+        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCompañia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompañia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @*Html.ActionLink("Edit", "Edit", new { id = item.IdCliente }) |*@
+                @Html.ActionLink("Detalle", "DetalleCliente", new { cod = item.IdCliente }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Eliminar", "EliminarCliente", new { cod = item.IdCliente }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
