@@ -1,0 +1,55 @@
+﻿@model MVC_CarritoCompra.Models.Articulos
+
+@{
+    ViewBag.Title = "Seleccionar_Articulo";
+}
+
+<h2>Seleccionar_Articulo</h2>
+
+<div>
+    <h4>Articulos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.art_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.art_nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.art_uni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.art_uni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.art_pre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.art_pre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.art_stk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.art_stk)
+        </dd>
+
+    </dl>
+</div>
+<br/>
+<img src="@Url.Content("~/Imagenes/"+ Model.art_cod +".jpg")"
+     style="width:160px;height:160px;" />
+<br />
+<p>
+    @Html.ActionLink("Agregar al Carrito", "Agregar_Articulo_Carrito", 
+                            new { cod = Model.art_cod }) |
+    @Html.ActionLink("Regresar", "Listar_Articulos")
+</p>

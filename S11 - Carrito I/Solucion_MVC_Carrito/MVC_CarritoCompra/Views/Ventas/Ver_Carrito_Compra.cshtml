@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MVC_CarritoCompra.Models.Carrito>
+
+@{
+    ViewBag.Title = "Ver_Carrito_Compra";
+    decimal total = Model.Sum(p=>p.importe);
+}
+
+<h2>Ver_Carrito_Compra</h2>
+
+<p>
+    @Html.ActionLink("Seguir Comprando", "Listar_Articulos")
+</p>
+<table class="table">
+    <tr>
+        <th>Foto</th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </th>
+        <th>Importe</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+             <img src="@Url.Content("~/Imagenes/"+ item.codigo +".jpg")"
+                 style="width:60px;height:60px;" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>@item.importe.ToString("N2") 
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.codigo })
+        </td>
+    </tr>
+}
+<tr>
+    <td colspan="6">Importe Total: @total.ToString("N2")</td>
+</tr>
+
+</table>
