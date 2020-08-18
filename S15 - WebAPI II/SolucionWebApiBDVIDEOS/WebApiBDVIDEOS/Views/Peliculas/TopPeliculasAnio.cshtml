@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebApiBDVIDEOS.Models.Top_Peliculas_Alquiler_Anio_Result>
+
+@{
+    ViewBag.Title = "TopPeliculasAnio";
+    SelectList lista = (SelectList)ViewBag.ANIOS;
+}
+
+<h2>TopPeliculasAnio</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Seleccione Año de Alquiler: @Html.DropDownList("n_anio", lista, 
+                                     "Seleccione", new { @class="form-control"})
+        <br/>
+        Top de Peliculas: <input type="number" name="n_top" value="@ViewBag.TOP" />
+        <input type="submit" value="Consultar">
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cod_pel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom_pel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.des_gen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cant_Alquileres)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cod_pel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_pel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.des_gen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cant_Alquileres)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.cod_pel }) |
+            @Html.ActionLink("Details", "Details", new { id=item.cod_pel }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.cod_pel })
+        </td>
+    </tr>
+}
+
+</table>

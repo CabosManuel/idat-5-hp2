@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebApiNeptuno2020.Models.PedidosProductoFechas_API_Result>
+
+@{
+    ViewBag.Title = "PedidosProductoRangoFechas";
+    
+}
+
+<h2>PedidosProductoRangoFechas</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Seleccione Producto: @Html.DropDownList("xcodprod", (SelectList)ViewBag.PRODUCTOS,
+                                                "Seleccione", new { @class="form-control"})
+        <br/>
+        Fecha De Inicio: <input type="date" name="xfecha_ini" value="@ViewBag.FECHA_INI">
+        <br />
+        Fecha De Fin: <input type="date" name="xfecha_fin" value="@ViewBag.FECHA_FIN">
+        <br/>
+        <input type="submit" value="Consultar" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCompañia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioUnidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importe)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdPedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCompañia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioUnidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Importe)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPedido }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPedido }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPedido })
+        </td>
+    </tr>
+}
+
+</table>
