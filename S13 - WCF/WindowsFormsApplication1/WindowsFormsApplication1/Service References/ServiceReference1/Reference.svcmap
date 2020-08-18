@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cab1aa8f-49db-4c5d-8eae-6876ab187d24" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:10582/ServicioBancos.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioBancos.disco" MetadataType="Disco" ID="6d108c1b-fb3b-41d1-bf85-455e5c469a98" SourceId="1" SourceUrl="http://localhost:10582/ServicioBancos.svc?disco" />
+    <MetadataFile FileName="ServicioBancos.wsdl" MetadataType="Wsdl" ID="7f6547d1-48c9-4c51-829e-fc27c62d0097" SourceId="1" SourceUrl="http://localhost:10582/ServicioBancos.svc?wsdl" />
+    <MetadataFile FileName="ServicioBancos.xsd" MetadataType="Schema" ID="6b3c1009-eeba-4bd6-8f28-115526cdcd7c" SourceId="1" SourceUrl="http://localhost:10582/ServicioBancos.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioBancos1.xsd" MetadataType="Schema" ID="aa8d756d-037e-460a-a2c2-1fbc51f82d06" SourceId="1" SourceUrl="http://localhost:10582/ServicioBancos.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioBancos2.xsd" MetadataType="Schema" ID="a27c6896-52b2-4192-87c4-ac938fcc5741" SourceId="1" SourceUrl="http://localhost:10582/ServicioBancos.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

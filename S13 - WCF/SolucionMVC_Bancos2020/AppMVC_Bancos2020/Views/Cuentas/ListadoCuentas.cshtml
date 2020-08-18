@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AppMVC_Bancos2020.WSBANCOS2020.Cuentas>
+
+@{
+    ViewBag.Title = "ListadoCuentas";
+}
+
+<h2>ListadoCuentas</h2>
+
+<p>
+    @Html.ActionLink("Nueva Cuenta", "GrabarCuenta")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.num_cta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cli_codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cod_cta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.saldo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.num_cta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cli_codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cod_cta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.saldo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
