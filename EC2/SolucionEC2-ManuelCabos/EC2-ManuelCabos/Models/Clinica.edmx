@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BDCLINICA2019Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Citas">
+          <Key>
+            <PropertyRef Name="nrocita" />
+          </Key>
+          <Property Name="nrocita" Type="int" Nullable="false" />
+          <Property Name="codmed" Type="char" MaxLength="5" />
+          <Property Name="codpac" Type="char" MaxLength="6" />
+          <Property Name="tipo" Type="int" />
+          <Property Name="pago" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="estado" Type="int" />
+          <Property Name="descrip" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="Distrito">
+          <Key>
+            <PropertyRef Name="coddis" />
+          </Key>
+          <Property Name="coddis" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="nomdis" Type="varchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="codesp" />
+          </Key>
+          <Property Name="codesp" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="nomesp" Type="varchar" MaxLength="40" />
+          <Property Name="costo" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="Medicos">
+          <Key>
+            <PropertyRef Name="codmed" />
+          </Key>
+          <Property Name="codmed" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="codesp" Type="char" MaxLength="3" />
+          <Property Name="nommed" Type="varchar" MaxLength="40" />
+          <Property Name="anio_colegio" Type="int" />
+          <Property Name="coddis" Type="char" MaxLength="3" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Pacientes">
+          <Key>
+            <PropertyRef Name="codpac" />
+          </Key>
+          <Property Name="codpac" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="nompac" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dnipac" Type="char" MaxLength="8" />
+          <Property Name="tel_cel" Type="varchar" MaxLength="10" />
+          <Property Name="dirpac" Type="varchar" MaxLength="50" />
+          <Property Name="coddis" Type="char" MaxLength="3" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <Association Name="fk_citas_codmed">
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicos">
+              <PropertyRef Name="codmed" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="codmed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_citas_codpac">
+          <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacientes">
+              <PropertyRef Name="codpac" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="codpac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_medicos_coddis">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="coddis" />
+            </Principal>
+            <Dependent Role="Medicos">
+              <PropertyRef Name="coddis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_medicos_codesp">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="0..1" />
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="codesp" />
+            </Principal>
+            <Dependent Role="Medicos">
+              <PropertyRef Name="codesp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pacientes_coddis">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
+          <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="coddis" />
+            </Principal>
+            <Dependent Role="Pacientes">
+              <PropertyRef Name="coddis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_actualizar_cita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nrocita" Type="int" Mode="In" />
+          <Parameter Name="codmed" Type="char" Mode="In" />
+          <Parameter Name="codpac" Type="char" Mode="In" />
+          <Parameter Name="tipo" Type="int" Mode="In" />
+          <Parameter Name="pago" Type="decimal" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="descrip" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_detalle_cita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nrocita" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_eliminar_cita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nrocita" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_insertar_cita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nrocita" Type="int" Mode="In" />
+          <Parameter Name="codmed" Type="char" Mode="In" />
+          <Parameter Name="codpac" Type="char" Mode="In" />
+          <Parameter Name="tipo" Type="int" Mode="In" />
+          <Parameter Name="pago" Type="decimal" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="descrip" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_listar_citas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_medico_anio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codmed" Type="char" Mode="In" />
+          <Parameter Name="anio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_medico_especilidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codesp" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="BDCLINICA2019ModelStoreContainer">
+          <EntitySet Name="Citas" EntityType="Self.Citas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacientes" EntityType="Self.Pacientes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_citas_codmed" Association="Self.fk_citas_codmed">
+            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_citas_codpac" Association="Self.fk_citas_codpac">
+            <End Role="Pacientes" EntitySet="Pacientes" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_medicos_coddis" Association="Self.fk_medicos_coddis">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="Medicos" EntitySet="Medicos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_medicos_codesp" Association="Self.fk_medicos_codesp">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Medicos" EntitySet="Medicos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pacientes_coddis" Association="Self.fk_pacientes_coddis">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="Pacientes" EntitySet="Pacientes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDCLINICA2019Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Citas">
+          <Key>
+            <PropertyRef Name="nrocita" />
+          </Key>
+          <Property Name="nrocita" Type="Int32" Nullable="false" />
+          <Property Name="codmed" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="codpac" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="tipo" Type="Int32" />
+          <Property Name="pago" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="descrip" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Medicos" Relationship="Self.fk_citas_codmed" FromRole="Citas" ToRole="Medicos" />
+          <NavigationProperty Name="Pacientes" Relationship="Self.fk_citas_codpac" FromRole="Citas" ToRole="Pacientes" />
+        </EntityType>
+        <EntityType Name="Distrito">
+          <Key>
+            <PropertyRef Name="coddis" />
+          </Key>
+          <Property Name="coddis" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nomdis" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Medicos" Relationship="Self.fk_medicos_coddis" FromRole="Distrito" ToRole="Medicos" />
+          <NavigationProperty Name="Pacientes" Relationship="Self.fk_pacientes_coddis" FromRole="Distrito" ToRole="Pacientes" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="codesp" />
+          </Key>
+          <Property Name="codesp" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nomesp" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="costo" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="Medicos" Relationship="Self.fk_medicos_codesp" FromRole="Especialidad" ToRole="Medicos" />
+        </EntityType>
+        <EntityType Name="Medicos">
+          <Key>
+            <PropertyRef Name="codmed" />
+          </Key>
+          <Property Name="codmed" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="codesp" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="nommed" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="anio_colegio" Type="Int32" />
+          <Property Name="coddis" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="Citas" Relationship="Self.fk_citas_codmed" FromRole="Medicos" ToRole="Citas" />
+          <NavigationProperty Name="Distrito" Relationship="Self.fk_medicos_coddis" FromRole="Medicos" ToRole="Distrito" />
+          <NavigationProperty Name="Especialidad" Relationship="Self.fk_medicos_codesp" FromRole="Medicos" ToRole="Especialidad" />
+        </EntityType>
+        <EntityType Name="Pacientes">
+          <Key>
+            <PropertyRef Name="codpac" />
+          </Key>
+          <Property Name="codpac" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nompac" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dnipac" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="tel_cel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dirpac" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="coddis" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="Citas" Relationship="Self.fk_citas_codpac" FromRole="Pacientes" ToRole="Citas" />
+          <NavigationProperty Name="Distrito" Relationship="Self.fk_pacientes_coddis" FromRole="Pacientes" ToRole="Distrito" />
+        </EntityType>
+        <Association Name="fk_citas_codmed">
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicos">
+              <PropertyRef Name="codmed" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="codmed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_citas_codpac">
+          <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacientes">
+              <PropertyRef Name="codpac" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="codpac" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_medicos_coddis">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="coddis" />
+            </Principal>
+            <Dependent Role="Medicos">
+              <PropertyRef Name="coddis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pacientes_coddis">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
+          <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="coddis" />
+            </Principal>
+            <Dependent Role="Pacientes">
+              <PropertyRef Name="coddis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_medicos_codesp">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="0..1" />
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="codesp" />
+            </Principal>
+            <Dependent Role="Medicos">
+              <PropertyRef Name="codesp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDCLINICA2019" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Citas" EntityType="Self.Citas" />
+          <EntitySet Name="Distrito" EntityType="Self.Distrito" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" />
+          <EntitySet Name="Medicos" EntityType="Self.Medicos" />
+          <EntitySet Name="Pacientes" EntityType="Self.Pacientes" />
+          <AssociationSet Name="fk_citas_codmed" Association="Self.fk_citas_codmed">
+            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_citas_codpac" Association="Self.fk_citas_codpac">
+            <End Role="Pacientes" EntitySet="Pacientes" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_medicos_coddis" Association="Self.fk_medicos_coddis">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="Medicos" EntitySet="Medicos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pacientes_coddis" Association="Self.fk_pacientes_coddis">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="Pacientes" EntitySet="Pacientes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_medicos_codesp" Association="Self.fk_medicos_codesp">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Medicos" EntitySet="Medicos" />
+          </AssociationSet>
+          <FunctionImport Name="sp_actualizar_cita">
+            <Parameter Name="nrocita" Mode="In" Type="Int32" />
+            <Parameter Name="codmed" Mode="In" Type="String" />
+            <Parameter Name="codpac" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="Int32" />
+            <Parameter Name="pago" Mode="In" Type="Decimal" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="descrip" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_eliminar_cita">
+          <Parameter Name="nrocita" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insertar_cita">
+            <Parameter Name="nrocita" Mode="In" Type="Int32" />
+            <Parameter Name="codmed" Mode="In" Type="String" />
+            <Parameter Name="codpac" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="Int32" />
+            <Parameter Name="pago" Mode="In" Type="Decimal" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="descrip" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_listar_citas" ReturnType="Collection(BDCLINICA2019Model.sp_listar_citas_Result)" />
+          <FunctionImport Name="sp_medico_anio" ReturnType="Collection(BDCLINICA2019Model.sp_medico_anio_Result)">
+            <Parameter Name="codmed" Mode="In" Type="String" />
+            <Parameter Name="anio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_detalle_cita" ReturnType="Collection(BDCLINICA2019Model.sp_detalle_cita_Result)">
+          <Parameter Name="nrocita" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_medico_especilidad" ReturnType="Collection(BDCLINICA2019Model.sp_medico_especilidad_Result)">
+          <Parameter Name="codesp" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_listar_citas_Result">
+          <Property Type="Int32" Name="nrocita" Nullable="false" />
+          <Property Type="String" Name="codmed" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="codpac" Nullable="true" MaxLength="6" />
+          <Property Type="Int32" Name="tipo" Nullable="true" />
+          <Property Type="Decimal" Name="pago" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="estado" Nullable="true" />
+          <Property Type="String" Name="descrip" Nullable="true" MaxLength="400" />
+        </ComplexType>
+        <ComplexType Name="sp_medico_anio_Result">
+          <Property Type="Int32" Name="nrocita" Nullable="false" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="nompac" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_detalle_cita_Result">
+          <Property Type="Int32" Name="nrocita" Nullable="false" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="nommed" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="nompac" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="pago" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="String" Name="descrip" Nullable="true" MaxLength="400" />
+        </ComplexType>
+        <ComplexType Name="sp_medico_especilidad_Result">
+          <Property Type="String" Name="codmed" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="nommed" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="nomdis" Nullable="true" MaxLength="35" />
+          <Property Type="Int32" Name="anio_colegio" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDCLINICA2019ModelStoreContainer" CdmEntityContainer="BDCLINICA2019">
+          <EntitySetMapping Name="Citas">
+            <EntityTypeMapping TypeName="BDCLINICA2019Model.Citas">
+              <MappingFragment StoreEntitySet="Citas">
+                <ScalarProperty Name="nrocita" ColumnName="nrocita" />
+                <ScalarProperty Name="codmed" ColumnName="codmed" />
+                <ScalarProperty Name="codpac" ColumnName="codpac" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="pago" ColumnName="pago" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descrip" ColumnName="descrip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Distrito">
+            <EntityTypeMapping TypeName="BDCLINICA2019Model.Distrito">
+              <MappingFragment StoreEntitySet="Distrito">
+                <ScalarProperty Name="coddis" ColumnName="coddis" />
+                <ScalarProperty Name="nomdis" ColumnName="nomdis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidad">
+            <EntityTypeMapping TypeName="BDCLINICA2019Model.Especialidad">
+              <MappingFragment StoreEntitySet="Especialidad">
+                <ScalarProperty Name="codesp" ColumnName="codesp" />
+                <ScalarProperty Name="nomesp" ColumnName="nomesp" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicos">
+            <EntityTypeMapping TypeName="BDCLINICA2019Model.Medicos">
+              <MappingFragment StoreEntitySet="Medicos">
+                <ScalarProperty Name="codmed" ColumnName="codmed" />
+                <ScalarProperty Name="codesp" ColumnName="codesp" />
+                <ScalarProperty Name="nommed" ColumnName="nommed" />
+                <ScalarProperty Name="anio_colegio" ColumnName="anio_colegio" />
+                <ScalarProperty Name="coddis" ColumnName="coddis" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacientes">
+            <EntityTypeMapping TypeName="BDCLINICA2019Model.Pacientes">
+              <MappingFragment StoreEntitySet="Pacientes">
+                <ScalarProperty Name="codpac" ColumnName="codpac" />
+                <ScalarProperty Name="nompac" ColumnName="nompac" />
+                <ScalarProperty Name="dnipac" ColumnName="dnipac" />
+                <ScalarProperty Name="tel_cel" ColumnName="tel_cel" />
+                <ScalarProperty Name="dirpac" ColumnName="dirpac" />
+                <ScalarProperty Name="coddis" ColumnName="coddis" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_actualizar_cita" FunctionName="BDCLINICA2019Model.Store.sp_actualizar_cita" />
+          <FunctionImportMapping FunctionImportName="sp_eliminar_cita" FunctionName="BDCLINICA2019Model.Store.sp_eliminar_cita" />
+          <FunctionImportMapping FunctionImportName="sp_insertar_cita" FunctionName="BDCLINICA2019Model.Store.sp_insertar_cita" />
+          <FunctionImportMapping FunctionImportName="sp_listar_citas" FunctionName="BDCLINICA2019Model.Store.sp_listar_citas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDCLINICA2019Model.sp_listar_citas_Result">
+                <ScalarProperty Name="nrocita" ColumnName="nrocita" />
+                <ScalarProperty Name="codmed" ColumnName="codmed" />
+                <ScalarProperty Name="codpac" ColumnName="codpac" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="pago" ColumnName="pago" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descrip" ColumnName="descrip" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_medico_anio" FunctionName="BDCLINICA2019Model.Store.sp_medico_anio">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDCLINICA2019Model.sp_medico_anio_Result">
+                <ScalarProperty Name="nrocita" ColumnName="nrocita" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="nompac" ColumnName="nompac" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_detalle_cita" FunctionName="BDCLINICA2019Model.Store.sp_detalle_cita">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDCLINICA2019Model.sp_detalle_cita_Result">
+                <ScalarProperty Name="nrocita" ColumnName="nrocita" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="nommed" ColumnName="nommed" />
+                <ScalarProperty Name="nompac" ColumnName="nompac" />
+                <ScalarProperty Name="pago" ColumnName="pago" />
+                <ScalarProperty Name="descrip" ColumnName="descrip" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_medico_especilidad" FunctionName="BDCLINICA2019Model.Store.sp_medico_especilidad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDCLINICA2019Model.sp_medico_especilidad_Result">
+                <ScalarProperty Name="codmed" ColumnName="codmed" />
+                <ScalarProperty Name="nommed" ColumnName="nommed" />
+                <ScalarProperty Name="nomdis" ColumnName="nomdis" />
+                <ScalarProperty Name="anio_colegio" ColumnName="anio_colegio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

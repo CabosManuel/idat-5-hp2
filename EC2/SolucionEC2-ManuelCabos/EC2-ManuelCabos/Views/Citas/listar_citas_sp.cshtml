@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EC2_ManuelCabos.Models.sp_listar_citas_Result>
+
+@{
+    ViewBag.Title = "Listar citas";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 5, canPage: true, canSort:true);
+}
+
+<h2>Listar citas</h2>
+
+<p>
+    @Html.ActionLink("Nueva cita", "insertar_cita_sp")
+</p>
+
+@grid.GetHtml(tableStyle: "table", mode: WebGridPagerModes.All,
+    columns: new[] {
+        grid.Column("nrocita",header:"N° cita"),
+        grid.Column("codmed",header:"Médico"),
+        grid.Column("codpac",header:"Paciente"),
+        grid.Column("tipo",header:"Tipo"),
+        grid.Column("pago",header:"Pago"),
+        grid.Column("fecha",header:"Fecha"),
+        grid.Column("descrip",header:"Descripción"),
+        grid.Column("",header:"Acciones",
+          format:
+            @<text>
+                @Html.ActionLink("Editar", "actualizar_cita_sp", new { ncita=item.nrocita }) |
+                @Html.ActionLink("Eliminar", "eliminar_cita_sp", new { ncita=item.nrocita })
+            </text>
+        )
+    })

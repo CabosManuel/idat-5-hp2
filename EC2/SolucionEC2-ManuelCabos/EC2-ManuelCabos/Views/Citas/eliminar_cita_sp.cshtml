@@ -1,0 +1,79 @@
+﻿@model EC2_ManuelCabos.Models.Citas
+
+@{
+    ViewBag.Title = "Eliminar cita";
+}
+
+<h2>Eliminar cita</h2>
+
+<h3>¿Esta seguro que quiere eliminar esta cita?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nrocita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nrocita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codpac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codpac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descrip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descrip)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver a la lista", "listar_citas_sp")
+        </div>
+    }
+</div>

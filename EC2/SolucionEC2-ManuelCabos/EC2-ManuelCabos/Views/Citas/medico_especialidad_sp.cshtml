@@ -1,0 +1,51 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<EC2_ManuelCabos.Models.sp_medico_especilidad_Result>
+
+@{
+    ViewBag.Title = "medico_especialidad_sp";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 3, canPage: true, canSort: true);
+}
+
+<h2>Listar médicos por especialidad</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        Seleccione una especialidad: @Html.DropDownList("codesp", (SelectList)ViewBag.especialidades, "Seleccione", new { @class = "form-control" })<br />
+        <input type="submit" value="Consultar" class="btn btn-info">
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Distrito</th>
+        <th>Año colegiatura</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.codmed</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nommed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomdis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.anio_colegio)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="pagedList">
+    @Html.PagedListPager(Model, nPag => Url.Action("medico_especialidad_sp",
+          new { codesp = ViewBag.codesp, nPag }),
+    PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>

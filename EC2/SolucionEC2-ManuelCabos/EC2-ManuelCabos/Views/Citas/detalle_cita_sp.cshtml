@@ -1,0 +1,66 @@
+﻿@model EC2_ManuelCabos.Models.sp_detalle_cita_Result
+
+@{
+    ViewBag.Title = "detalle_cita_sp";
+}
+
+<h2>detalle_cita_sp</h2>
+
+<div>
+    <h4>sp_detalle_cita_Result</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nrocita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nrocita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nommed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nommed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nompac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nompac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descrip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descrip)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
