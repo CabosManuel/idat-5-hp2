@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AppMVC_CRUD.Models.ALUMNO>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Listado</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Alumno", "NuevoAlumno")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codalu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomalu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pension)
+        </th>
+        <th>Carrera</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.codalu</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomalu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pension)
+        </td>
+        <td>@item.carrera</td>
+        <td>
+            @Html.ActionLink("Editar", "EditarAlumno", 
+                                 new { xcodalu = item.codalu }) |
+            @Html.ActionLink("Detalle", "DetalleAlumno", 
+                                 new { xcodalu = item.codalu }) |
+            @Html.ActionLink("Eliminar", "EliminarAlumno", 
+                                 new { codigo=item.codalu })
+        </td>
+    </tr>
+}
+
+</table>

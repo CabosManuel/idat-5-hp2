@@ -1,0 +1,46 @@
+﻿@model AppMVC_CRUD.Models.ALUMNO
+
+@{
+    ViewBag.Title = "EliminarAlumno";
+}
+
+<h2>EliminarAlumno</h2>
+
+<h3>Estas seguro de Eliminar a este Alumno?</h3>
+<div>
+    <h4>ALUMNO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.codalu)</dt>
+        <dd>@Html.DisplayFor(model => model.codalu)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.nomalu)</dt>
+        <dd>@Html.DisplayFor(model => model.nomalu)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.pension)</dt>
+        <dd>@Html.DisplayFor(model => model.pension)</dd>
+        
+        <!-- Desde aqui es lo nuevo -->
+        <dt>Fecha de Nacimiento</dt>
+        <dd>@Model.fecnac</dd>
+
+        <dt>Genero</dt>
+        <dd>@Model.genero</dd>
+
+        <dt>Carrera</dt>
+        <dd>@Model.carrera</dd>
+    </dl>
+    <br/>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar Alumno" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar al Listado", "Listado")
+        </div>
+    }
+</div>
+<br/>
+<div class="alert alert-danger">
+    @ViewBag.MENSAJE
+</div>
