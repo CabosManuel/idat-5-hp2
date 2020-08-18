@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Neptuno2019Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="int" Nullable="false" />
+          <Property Name="NombreCategoria" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Imagen" Type="image" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NombreCompañia" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="NombreContacto" Type="nvarchar" MaxLength="30" />
+          <Property Name="CargoContacto" Type="nvarchar" MaxLength="30" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="60" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="15" />
+          <Property Name="Region" Type="nvarchar" MaxLength="15" />
+          <Property Name="CodPostal" Type="nvarchar" MaxLength="10" />
+          <Property Name="Pais" Type="nvarchar" MaxLength="15" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="24" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="NombreProducto" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="IdProveedor" Type="int" />
+          <Property Name="IdCategoria" Type="int" />
+          <Property Name="CantidadPorUnidad" Type="nvarchar" MaxLength="20" />
+          <Property Name="PrecioUnidad" Type="money" />
+          <Property Name="UnidadesEnExistencia" Type="smallint" />
+          <Property Name="UnidadesEnPedido" Type="smallint" />
+          <Property Name="NivelNuevoPedido" Type="smallint" />
+          <Property Name="Suspendido" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Productos_Categorias">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="pa_actualizar_cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcliente" Type="char" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="pais" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_eliminar_cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcliente" Type="char" Mode="In" />
+        </Function>
+        <Function Name="pa_insertar_cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcliente" Type="char" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="pais" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_listar_clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_pedidos_cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcliente" Type="char" Mode="In" />
+        </Function>
+        <Function Name="ProductosPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idcategoria" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Neptuno2019ModelStoreContainer">
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Productos_Categorias" Association="Self.FK_Productos_Categorias">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Neptuno2019Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreCompañia" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreContacto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CargoContacto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ciudad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CodPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Pais" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="Neptuno2019Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <FunctionImport Name="pa_insertar_cliente">
+            <Parameter Name="idcliente" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="pais" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_listar_clientes" ReturnType="Collection(Neptuno2019Model.pa_listar_clientes_Result)" />
+          <FunctionImport Name="pa_pedidos_cliente" ReturnType="Collection(Neptuno2019Model.pa_pedidos_cliente_Result)">
+          <Parameter Name="idcliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_actualizar_cliente">
+            <Parameter Name="idcliente" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="pais" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_eliminar_cliente">
+          <Parameter Name="idcliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Categorias" EntityType="Neptuno2019Model.Categorias" />
+          <FunctionImport Name="ProductosPorCategoria" ReturnType="Collection(Neptuno2019Model.ProductosPorCategoria_Result)">
+          <Parameter Name="idcategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Productos" EntityType="Neptuno2019Model.Productos" />
+          <AssociationSet Name="FK_Productos_Categorias" Association="Neptuno2019Model.FK_Productos_Categorias">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="pa_listar_clientes_Result">
+          <Property Type="String" Name="IdCliente" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="NombreCompañia" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Pais" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="24" />
+        </ComplexType>
+        <ComplexType Name="pa_pedidos_cliente_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="cant_items" Nullable="true" />
+          <Property Type="Decimal" Name="importe_pedido" Nullable="true" Precision="19" />
+        </ComplexType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="NombreCategoria" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Productos" Relationship="Neptuno2019Model.FK_Productos_Categorias" FromRole="Categorias" ToRole="Productos" />
+        </EntityType>
+        <ComplexType Name="ProductosPorCategoria_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="19" />
+          <Property Type="Int16" Name="Stock" Nullable="true" />
+          <Property Type="String" Name="NomProv" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="NombreProducto" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <Property Name="IdCategoria" Type="Int32" />
+          <Property Name="CantidadPorUnidad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PrecioUnidad" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UnidadesEnExistencia" Type="Int16" />
+          <Property Name="UnidadesEnPedido" Type="Int16" />
+          <Property Name="NivelNuevoPedido" Type="Int16" />
+          <Property Name="Suspendido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Categorias" Relationship="Neptuno2019Model.FK_Productos_Categorias" FromRole="Productos" ToRole="Categorias" />
+        </EntityType>
+        <Association Name="FK_Productos_Categorias">
+          <End Type="Neptuno2019Model.Categorias" Role="Categorias" Multiplicity="0..1" />
+          <End Type="Neptuno2019Model.Productos" Role="Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Neptuno2019ModelStoreContainer" CdmEntityContainer="Neptuno2019Entities">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="Neptuno2019Model.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="NombreCompañia" ColumnName="NombreCompañia" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="CargoContacto" ColumnName="CargoContacto" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pa_insertar_cliente" FunctionName="Neptuno2019Model.Store.pa_insertar_cliente" />
+          <FunctionImportMapping FunctionImportName="pa_listar_clientes" FunctionName="Neptuno2019Model.Store.pa_listar_clientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Neptuno2019Model.pa_listar_clientes_Result">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="NombreCompañia" ColumnName="NombreCompañia" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_pedidos_cliente" FunctionName="Neptuno2019Model.Store.pa_pedidos_cliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Neptuno2019Model.pa_pedidos_cliente_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="cant_items" ColumnName="cant_items" />
+                <ScalarProperty Name="importe_pedido" ColumnName="importe_pedido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_actualizar_cliente" FunctionName="Neptuno2019Model.Store.pa_actualizar_cliente" />
+          <FunctionImportMapping FunctionImportName="pa_eliminar_cliente" FunctionName="Neptuno2019Model.Store.pa_eliminar_cliente" />
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="Neptuno2019Model.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ProductosPorCategoria" FunctionName="Neptuno2019Model.Store.ProductosPorCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Neptuno2019Model.ProductosPorCategoria_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="NomProv" ColumnName="NomProv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="Neptuno2019Model.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="Suspendido" ColumnName="Suspendido" />
+                <ScalarProperty Name="NivelNuevoPedido" ColumnName="NivelNuevoPedido" />
+                <ScalarProperty Name="UnidadesEnPedido" ColumnName="UnidadesEnPedido" />
+                <ScalarProperty Name="UnidadesEnExistencia" ColumnName="UnidadesEnExistencia" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

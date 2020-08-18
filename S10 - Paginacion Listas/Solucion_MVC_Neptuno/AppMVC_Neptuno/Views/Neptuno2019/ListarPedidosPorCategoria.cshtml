@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AppMVC_Neptuno.Models.ProductosPorCategoria_Result>
+
+@{
+    ViewBag.Title = "ListarPedidosPorCategoria";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 4, canPage:true);
+}
+<h2>ListarPedidosPorCategoria</h2>
+@*
+    @using (Html.BeginForm(null, null, FormMethod.Get))
+*@
+@using (Html.BeginForm("ListarPedidosPorCategoria", "Neptuno2019", 
+                                                    FormMethod.Get))
+{
+    <p>
+        Seleccione Categoria: @Html.DropDownList("codcat",
+                                    (SelectList)ViewBag.CATEGORIAS,
+                                    "Seleccione",
+                                    new { @class = "form-control" })
+        <br/>
+        <input type="submit" value="Consultar" class="btn btn-success">
+    </p>
+}
+<div>
+    @grid.GetHtml(tableStyle:"table",
+    columns:new[] {
+        grid.Column("IdProducto",header:"Codigo"),
+        grid.Column("NombreProducto",header:"Nombre"),
+        grid.Column("Precio",header:"Precio"),
+        grid.Column("Stock",header:"Stock"),
+        grid.Column("NomProv",header:"Proveedor"),
+        grid.Column("",header:"Acciones",
+           format:@<Text>
+                           @Html.ActionLink("Detalle","DetalleProducto", 
+                                              new { id=item.IdProducto }) |
+                           @Html.ActionLink("Detalle","DetalleProducto",
+                                              new { id=item.IdProducto })
+                  </text>)
+    }) 
+</div>

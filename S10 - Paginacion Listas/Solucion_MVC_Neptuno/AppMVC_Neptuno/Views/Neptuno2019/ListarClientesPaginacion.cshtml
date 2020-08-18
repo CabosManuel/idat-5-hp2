@@ -1,0 +1,12 @@
+﻿@model IEnumerable<AppMVC_Neptuno.Models.Clientes>
+
+@{
+    ViewBag.Title = "ListarClientesPaginacion";
+    // definir un control WebGrid
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 5, canPage: true);
+
+}
+
+<h2>ListarClientesPaginacion</h2>
+<!-- mostrando el control WebGrid -->
+@grid.GetHtml()
