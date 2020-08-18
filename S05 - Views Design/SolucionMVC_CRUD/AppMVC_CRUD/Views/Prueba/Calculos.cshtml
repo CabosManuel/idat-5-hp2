@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Calculos";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
+}
+
+<h2>Calculos</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>Numero 1</td>
+            <td>
+                <input type="text" name="numero1" value="@ViewBag.NUM1" />
+            </td>
+        </tr>
+        <tr>
+            <td>Numero 2</td>
+            <td>
+                <input type="text" name="numero2" value="@ViewBag.NUM2"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Sumar" />
+            </td>
+            <td>
+                <input type="reset" value="Cancelar" />
+            </td>
+        </tr>
+        <tr>
+            <td>Resultado:</td>
+            <td>@ViewBag.RESULTADO </td>
+        </tr>
+    </table>
+
+}

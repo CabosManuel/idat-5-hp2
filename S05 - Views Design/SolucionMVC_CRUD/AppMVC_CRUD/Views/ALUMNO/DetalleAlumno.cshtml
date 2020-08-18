@@ -1,0 +1,67 @@
+﻿@model AppMVC_CRUD.Models.ALUMNO
+
+@{
+    ViewBag.Title = "DetalleAlumno";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
+}
+
+<h2>DetalleAlumno</h2>
+
+<div>
+    <h4>ALUMNO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codalu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codalu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomalu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomalu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecnac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecnac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.genero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.genero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carrera)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "EditarAlumno", new { xcodalu = Model.codalu }) |
+    @Html.ActionLink("Regresar al Listado", "Listado")
+</p>

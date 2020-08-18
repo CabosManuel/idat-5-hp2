@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="background-color:greenyellow">
+    <header>
+        <img src="~/Imagenes/encabezado1.jpg" 
+             style="width:100%;height:160px;"/>
+    </header>
+    <section>
+        @RenderBody()
+    </section>
+    <footer>
+        <img src="~/Imagenes/pie1.png" 
+             style="width:100%;height:120px;"/>
+    </footer>
+</body>
+</html>
