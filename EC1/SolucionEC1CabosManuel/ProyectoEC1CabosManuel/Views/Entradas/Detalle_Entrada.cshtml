@@ -1,0 +1,90 @@
+﻿@model ProyectoEC1CabosManuel.Models.Entradas
+
+@{
+    ViewBag.Title = "Detalle_Entrada";
+}
+
+<h2>Detalle Entrada</h2>
+
+<div>
+    <h4>Entradas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NroEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NroEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombrePelicula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombrePelicula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pagado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pagado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Eliminar", "Eliminar_Entrada", new { entrada = Model.NroEntrada }) |
+    @Html.ActionLink("Volver a la Lista", "Lista_Entradas")
+</p>
+
+@if (ViewBag.msj != null)
+{
+    <br />
+    <div class="alert alert-danger">
+        <p>@ViewBag.msj</p>
+    </div>
+}

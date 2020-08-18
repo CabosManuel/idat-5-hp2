@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+<img src="~/Imagenes/cabecera01.jpg" style="width:100%;height:130px"/>
+
+<h2>Ingresar al Sistema</h2>
+
+@using (Html.BeginForm())
+{
+    <table align="center">
+        <tr>
+            <td colspan="2" style="text-align:center;color:white;background-color:mediumpurple"><label>INGRESO AL SISTEMA</label></td>
+        </tr>
+        <tr>
+            <td><label>Nombre del Usuario:</label></td>
+            <td><input type="text" name="usuario" class="form-control"/></td>
+        </tr>
+        <tr>
+            <td><label>Clave del Usuario:</label></td>
+            <td><input type="password" name="clave" class="form-control"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:center"><input type="submit" value="Aceptar" class="btn btn-success"/></td>
+            <td style="text-align:center"><input type="reset" value="Cancelar" class="btn btn-warning"/></td>
+        </tr>
+    </table>
+
+    if(ViewBag.error!=null)
+    {
+        <br />
+        <div class="alert alert-danger text-center">
+            <p>@ViewBag.error</p>
+        </div>
+    }
+}
