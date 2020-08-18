@@ -1,33 +1,48 @@
 /S01 - MVC01/SoluionMVC01/packages/
 /S01 - MVC01/SoluionMVC01/AplicacionMVC01/bin/
 /S01 - MVC01/SoluionMVC01/AplicacionMVC01/obj/
+/S01 - MVC01/SoluionMVC01/AplicacionMVC01/scripts/
 /S02 - MVC + Listar (CRUD)/SolucionMVC_CRUD/packages/
 /S02 - MVC + Listar (CRUD)/SolucionMVC_CRUD/AppMVC_CRUD/bin/
 /S02 - MVC + Listar (CRUD)/SolucionMVC_CRUD/AppMVC_CRUD/obj/
+/S02 - MVC + Listar (CRUD)/SolucionMVC_CRUD/AppMVC_CRUD/scripts/
 /S03 - MVC + Crear Eliminar/SolucionMVC_CRUD/packages/
 /S03 - MVC + Crear Eliminar/SolucionMVC_CRUD/AppMVC_CRUD/bin/
 /S03 - MVC + Crear Eliminar/SolucionMVC_CRUD/AppMVC_CRUD/obj/
+/S03 - MVC + Crear Eliminar/SolucionMVC_CRUD/AppMVC_CRUD/Scripts/
 /S04 - Anotaciones y Validaciones/SolucionMVC_CRUD/packages/
 /S04 - Anotaciones y Validaciones/SolucionMVC_CRUD/AppMVC_CRUD/bin/
 /S04 - Anotaciones y Validaciones/SolucionMVC_CRUD/AppMVC_CRUD/obj/
+/S04 - Anotaciones y Validaciones/SolucionMVC_CRUD/AppMVC_CRUD/Scripts/
 /EC1/SolucionEC1CabosManuel/packages/
 /EC1/SolucionEC1CabosManuel/ProyectoEC1CabosManuel/bin/
 /EC1/SolucionEC1CabosManuel/ProyectoEC1CabosManuel/obj/
+/EC1/SolucionEC1CabosManuel/ProyectoEC1CabosManuel/scripts/
 /S05 - Views Design/SolucionMVC_CRUD/packages/
 /S05 - Views Design/SolucionMVC_CRUD/AppMVC_CRUD/bin/
 /S05 - Views Design/SolucionMVC_CRUD/AppMVC_CRUD/obj/
+/S05 - Views Design/SolucionMVC_CRUD/AppMVC_CRUD/Scripts/
 /S06 - Entity Framework/Sol_MVC_Neptuno2019_EF/packages/
 /S06 - Entity Framework/Sol_MVC_Neptuno2019_EF/MVC_Neptuno2019_EF/bin/
 /S06 - Entity Framework/Sol_MVC_Neptuno2019_EF/MVC_Neptuno2019_EF/obj/
+/S06 - Entity Framework/Sol_MVC_Neptuno2019_EF/MVC_Neptuno2019_EF/scripts/
 /S07 - EF Store Procedures/Solucion_MVC_BDBANCOS_EF/packages/
 /S07 - EF Store Procedures/Solucion_MVC_BDBANCOS_EF/MVC_BDBANCOS_EF/bin/
 /S07 - EF Store Procedures/Solucion_MVC_BDBANCOS_EF/MVC_BDBANCOS_EF/obj/
+/S07 - EF Store Procedures/Solucion_MVC_BDBANCOS_EF/MVC_BDBANCOS_EF/Scripts/
 /S08 - SP Personalizados/Solucion_MVC_Neptuno/packages/
 /S08 - SP Personalizados/Solucion_MVC_Neptuno/AppMVC_Neptuno/bin/
 /S08 - SP Personalizados/Solucion_MVC_Neptuno/AppMVC_Neptuno/obj/
+/S08 - SP Personalizados/Solucion_MVC_Neptuno/AppMVC_Neptuno/Scripts/
 /EC2/SolucionEC2-ManuelCabos/packages/
 /EC2/SolucionEC2-ManuelCabos/EC2-ManuelCabos/bin/
 /EC2/SolucionEC2-ManuelCabos/EC2-ManuelCabos/obj/
+/EC2/SolucionEC2-ManuelCabos/EC2-ManuelCabos/scripts/
+/S09 - SP Personalizados2/Solucion_MVC_Neptuno/packages/
+/S09 - SP Personalizados2/Solucion_MVC_Neptuno/AppMVC_Neptuno/bin/
+/S09 - SP Personalizados2/Solucion_MVC_Neptuno/AppMVC_Neptuno/obj/
+/S09 - SP Personalizados2/Solucion_MVC_Neptuno/AppMVC_Neptuno/Scripts/
 /EC3/SolucionEC3ManuelCabos/packages/
 /EC3/SolucionEC3ManuelCabos/ProyectoEC3ManuelCabos/bin/
 /EC3/SolucionEC3ManuelCabos/ProyectoEC3ManuelCabos/obj/
+/EC3/SolucionEC3ManuelCabos/ProyectoEC3ManuelCabos/scripts/

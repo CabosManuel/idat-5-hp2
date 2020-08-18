@@ -1,0 +1,21 @@
+﻿@model IEnumerable<AppMVC_Neptuno.Models.pa_listar_clientes_Result>
+
+@{
+    ViewBag.Title = "ListarClientesPaginacionSP";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 5, 
+                               canPage: true, canSort: true);
+}
+
+<h2>ListarClientesPaginacionSP</h2>
+
+@grid.GetHtml(tableStyle:"table", mode:WebGridPagerModes.All,
+    //firstText:"<<Primera",
+    //previousText: "<Anterior",
+    //nextText: ">Siguiente",
+    //lastText: ">>Ultimo" ,
+    columns:new[] {
+        grid.Column("IdCliente", header:"Codigo"),
+        grid.Column("NombreCompañia", header:"Nombre del Cliente"),
+        grid.Column("Pais", header:"Pais"),
+        grid.Column("Telefono", header:"Telefono")
+    })

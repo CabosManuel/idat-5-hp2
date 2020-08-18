@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AppMVC_Neptuno.Models.pa_pedidos_cliente_Result>
+
+@{
+    ViewBag.Title = "Listar_Pedidos_Por_Cliente";
+}
+
+<h2>Listar_Pedidos_Por_Cliente</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        Seleccione un Cliente: @Html.DropDownList("codcli", (SelectList)ViewBag.CLIENTES2,
+                                                  "[*******]",
+                                                  new { @class = "form-control" })
+        <input type="submit" value="Consultar" class="btn btn-info">
+    </div>
+}
+
+@*
+    <form action="Listar_Pedidos_Por_Cliente" method="get">
+        Seleccione un Cliente: @Html.DropDownList("codcli", (SelectList)ViewBag.CLIENTES2,
+                                                  "[*******]",
+                                                  new { @class="form-control"})
+        <input type="submit" value="Consultar" class="btn btn-info">
+    </form>
+*@
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cant_items)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.importe_pedido)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdPedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cant_items)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.importe_pedido)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPedido }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPedido }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPedido })
+        </td>
+    </tr>
+}
+
+</table>
