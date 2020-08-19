@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ClienteMVC_WebApi_BDTRANSITO.Models.PAPELETAS_PROPIETARIO>
+
+@{
+    ViewBag.Title = "PapeletasPropietario";
+    int conta = Model.Count();
+    var suma = Model.Where(x=>x.PAGADO=="No").Sum(x=>x.IMPORTE);
+}
+
+<h2>PapeletasPropietario</h2>
+
+<p>
+    @Html.ActionLink("Regresar", "ListarPropietarios","Propietario")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NROPAP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NROPLA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESINF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PAPFECHA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IMPORTE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PAGADO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NROPAP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NROPLA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESINF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PAPFECHA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IMPORTE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PAGADO)
+        </td>
+        <td>
+            @Html.ActionLink("Pagar Papeleta", "PagarPapeleta", new { xnumero=item.NROPAP })
+        </td>
+    </tr>
+}
+    <tr>
+        <td colspan="7">Cantidad de Papeletas: @conta</td>
+    </tr>
+    <tr>
+        <td colspan="7">Deuda por papeletas: @suma</td>
+    </tr>
+</table>

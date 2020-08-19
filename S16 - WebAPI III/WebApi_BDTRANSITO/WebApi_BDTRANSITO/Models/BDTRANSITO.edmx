@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDTRANSITO2016Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="LISTAR_PROPIETARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PAGAR_PAPELETA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NROPAP" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PAPELETAS_PROPIETARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DNIPRO" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="BDTRANSITO2016ModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDTRANSITO2016Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BDTRANSITO2016Entities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="LISTAR_PROPIETARIOS" ReturnType="Collection(BDTRANSITO2016Model.LISTAR_PROPIETARIOS_Result)">
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PAGAR_PAPELETA">
+            <Parameter Name="NROPAP" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PAPELETAS_PROPIETARIO" ReturnType="Collection(BDTRANSITO2016Model.PAPELETAS_PROPIETARIO_Result)">
+            <Parameter Name="DNIPRO" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="LISTAR_PROPIETARIOS_Result">
+          <Property Type="String" Name="DNIPRO" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="NOMPRO" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="PAPELETAS_PROPIETARIO_Result">
+          <Property Type="Int32" Name="NROPAP" Nullable="false" />
+          <Property Type="String" Name="NROPLA" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="DESINF" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PAPFECHA" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="IMPORTE" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="String" Name="PAGADO" Nullable="true" MaxLength="2" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDTRANSITO2016ModelStoreContainer" CdmEntityContainer="BDTRANSITO2016Entities" >
+          <FunctionImportMapping FunctionImportName="LISTAR_PROPIETARIOS" FunctionName="BDTRANSITO2016Model.Store.LISTAR_PROPIETARIOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDTRANSITO2016Model.LISTAR_PROPIETARIOS_Result">
+                <ScalarProperty Name="DNIPRO" ColumnName="DNIPRO" />
+                <ScalarProperty Name="NOMPRO" ColumnName="NOMPRO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PAGAR_PAPELETA" FunctionName="BDTRANSITO2016Model.Store.PAGAR_PAPELETA" />
+          <FunctionImportMapping FunctionImportName="PAPELETAS_PROPIETARIO" FunctionName="BDTRANSITO2016Model.Store.PAPELETAS_PROPIETARIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDTRANSITO2016Model.PAPELETAS_PROPIETARIO_Result">
+                <ScalarProperty Name="NROPAP" ColumnName="NROPAP" />
+                <ScalarProperty Name="NROPLA" ColumnName="NROPLA" />
+                <ScalarProperty Name="DESINF" ColumnName="DESINF" />
+                <ScalarProperty Name="PAPFECHA" ColumnName="PAPFECHA" />
+                <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
+                <ScalarProperty Name="PAGADO" ColumnName="PAGADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

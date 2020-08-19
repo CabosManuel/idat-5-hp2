@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ClienteMVC_WebApi_BDTRANSITO.Models.LISTAR_PROPIETARIOS>
+
+@{
+    ViewBag.Title = "ListarPropietarios";
+    int conta = Model.Count();
+}
+
+<h2>ListarPropietarios</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Nombre del Propietario: <input type="text" name="xnom" value="@ViewBag.NOMBRE">
+        <input type="submit" value="Consultar">
+    </p>   
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DNIPRO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMPRO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DNIPRO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMPRO)
+        </td>
+        <td>
+            @Html.ActionLink("Ver Papeletas", "PapeletasPropietario","Papeletas", 
+                             new { xdni=item.DNIPRO }, null)
+        </td>
+    </tr>
+}
+<tr>
+    <td colspan="3">Cantidad de Propietarios: @conta</td>
+</tr>
+</table>
